@@ -12,7 +12,7 @@ You need [Java](https://adoptopenjdk.net/) and [Logisim](https://sourceforge.net
 
 # How subleq works
 
-Subleq is an instruction set that only has one instruction: subleq. A subleq instruction consists of 3 memory addresses: a, b, and c. It subtracts that value at address a from the value at address b. If the result is less than or equal to 0, it jumps to address c. Otherwise, it goes to the next instruction. In pseudocode:
+Subleq is an instruction set that only has one instruction: subleq. A subleq instruction consists of 3 memory addresses: a, b, and c. It subtracts the value at address a from the value at address b. If the result is less than or equal to 0, it jumps to address c. Otherwise, it goes to the next instruction. In pseudocode:
 ```c
 Mem[b] = Mem[b] - Mem[a];
 if (Mem[b] <= 0) {
@@ -22,7 +22,7 @@ if (Mem[b] <= 0) {
 
 Curiously, this instruction is enough to build any program; well, any program that can fit in the memory.
 
-Technical note: The subleq dialect I'm using has all the instruction's addresses inside one memory location.
+Technical note: The subleq dialect I'm using has all of the instruction's addresses inside one memory location.
 
 # How cpu.circ works
 

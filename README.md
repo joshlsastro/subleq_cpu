@@ -1,6 +1,4 @@
-# subleq_cpu
-
-# Description of Files
+# Description
 
 cpu.circ is a Logisim file for a very basic [subleq][1] computer.
 `assembler` contains the Python programs for assembling JLM, a language I made up for this processor, into machine code for this computer.

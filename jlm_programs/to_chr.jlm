@@ -1,0 +1,28 @@
+# A program that prints numbers under 100 in ASCII to stdout
+# To use this program, you have to include the variables
+#
+LBL tochr
+    # num is the input number
+    MOV _ones num
+    # _ones = _ones-10; _tens = _tens+1; repeat until _ones<0
+    LBL loop
+        SUB _ones ten
+        SUB _tens NEGONE
+        BRP _ones loop
+        BRZ _ones loop
+    # Now that _ones is negative, we need to add ten back.
+    ADD _tens NEGONE
+    ADD _ones ten
+    # Output result
+    ADD _tens ASCIIZ
+    ADD _ones ASCIIZ
+    OUT _tens
+    OUT _ones
+    # Set _tens and _ones to 0 for next call
+    SUB _tens _tens
+    SUB _ones _ones
+#
+# Take out the halt if you include this in a program
+HLT
+
+{"num":0,"ten":10,"_tens":0,"_ones":0}

@@ -1,0 +1,91 @@
+# You have no idea how much work went into this
+GOTO loop
+#
+LBL fizzbuzz
+    OUT F
+    OUT i
+    OUT z
+    OUT z
+    OUT B
+    OUT u
+    OUT z
+    OUT z
+    GOTO inc
+#
+LBL fizz
+    OUT F
+    OUT i
+    OUT z
+    OUT z
+    GOTO inc
+#
+LBL buzz
+    OUT B
+    OUT u
+    OUT z
+    OUT z
+    GOTO inc
+#
+LBL loop
+    MOV a I
+    MOV b fifteen
+    LBL mod1
+    	SUB a b
+    	BRP a mod1
+    BRZ a fizzbuzz
+#
+    MOV a I
+    MOV b three
+    LBL mod2
+        SUB a b
+        BRP a mod2
+    BRZ a fizz
+#
+    MOV a I
+    MOV b five
+    LBL mod3
+        SUB a b
+        BRP a mod3
+    BRZ a buzz
+#
+    MOV b I
+    SUB a a
+    # See to_chr.jlm for more docs.
+    # Note: a and b are being reused as one's and ten's place respectively.
+    LBL tochr
+        SUB b ten
+ 	      SUB a NEGONE
+	      BRP b tochr
+        # No need to check if zero since that's covered by buzz
+    ADD a NEGONE
+    ADD b ten
+    ADD a ASCIIZ
+    ADD b ASCIIZ
+    OUT a
+    OUT b
+    GOTO inc
+#
+LBL inc
+    OUT newline
+    SUB I NEGONE
+    MOV top top_orig
+    SUB top I
+    BRP top loop
+#
+HLT
+
+{"a":0,
+"b":0,
+"I":1,
+"top":0,
+"top_orig":101,
+"fifteen":15,
+"three":3,
+"five":5,
+"ten":10,
+"newline":10,
+"F":70,
+"i":105,
+"z":122,
+"B":66,
+"u":117}

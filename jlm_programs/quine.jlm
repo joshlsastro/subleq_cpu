@@ -1,0 +1,11 @@
+# This is NOT a working quine. The compiled version was tweaked to be self-modifying.
+LBL start
+MOV ip a
+# After compilation, ip will be changed to a memory address.
+# ip will be incremented by one for each loop to get the source code.
+OUT a
+ADD ip one
+# one is 65536 to add 1 to the ip
+GOTO start
+HLT
+{"ip":0,"a":0,"one":65536}

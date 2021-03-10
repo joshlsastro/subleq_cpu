@@ -1,0 +1,24 @@
+OUT H
+OUT e
+OUT l
+OUT l
+OUT o
+OUT space
+OUT W
+OUT o
+OUT r
+OUT l
+OUT d
+OUT !
+OUT newline
+HLT
+{"H":72,
+"e":101,
+"l":108,
+"o":111,
+"space":32,
+"W":87,
+"r":114,
+"d":100,
+"!":33,
+"newline":10}

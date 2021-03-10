@@ -1,0 +1,6 @@
+LBL start
+INP a
+OUT a
+GOTO start
+HLT
+{"a": 0}

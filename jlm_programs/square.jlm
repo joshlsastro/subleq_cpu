@@ -1,0 +1,40 @@
+# Outputs square of one-digit numbers
+GOTO main
+LBL mult
+    BRZ b print_result
+    ADD result a
+    SUB b one
+    GOTO mult
+LBL main
+    INP a
+    SUB a ASCIIZ
+    # b already is 0; optimization
+    ADD b a
+    GOTO mult
+LBL print_result
+    # num is the input number
+    MOV _ones result
+    # _ones = _ones-10; _tens = _tens+1; repeat until _ones<0
+    LBL loop
+        SUB _ones ten
+        SUB _tens NEGONE
+        BRP _ones loop
+        BRZ _ones loop
+    # Now that _ones is negative, we need to add ten back.
+    ADD _tens NEGONE
+    ADD _ones ten
+    # Output result
+    ADD _tens ASCIIZ
+    ADD _ones ASCIIZ
+    OUT _tens
+    OUT _ones
+    # Set _tens and _ones to 0 for next call
+    SUB _tens _tens
+    SUB _ones _ones
+# newline; zero b and result; go to main
+OUT ten
+SUB b b
+SUBLEQ result result main
+HLT
+{"a":0,"b":0,"result":0,"one":1,
+"ten":10,"_tens":0,"_ones":0}

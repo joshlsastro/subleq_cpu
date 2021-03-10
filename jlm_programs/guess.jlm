@@ -1,0 +1,26 @@
+# guessing game for a number in [0,9]
+# The secret number is in answer
+LBL start
+INP n
+OUT n
+OUT NEWLINE
+SUB n ASCIIZ
+SUB n answer
+BRZ n yay
+OUT B
+OUT A
+OUT D
+OUT NEWLINE
+GOTO start
+LBL yay
+OUT s1
+OUT s2
+HLT
+{"n":0,
+"answer":9,
+"B":66,
+"A":65,
+"D":68,
+"NEWLINE":10,
+"s1":58,
+"s2":41}

@@ -23,7 +23,7 @@ if len(t) != 2:
 try:
   stuff = json.loads(t[1])
 except:
-  error("variables initalized incorrectly.")
+  error("variables initialized incorrectly.")
 program = t[0].split("\n")
 program.append("HLT")
 
@@ -67,7 +67,7 @@ for i in range(len(program)):
 #Defining Non-Branching Functions
 
 def subleq(a, b, lbl):
-  """Fundamnetal Operation!
+  """Fundamental Operation!
 Subtracts a from b and goes to c if results is less than or equal to zero;
 otherwise it goes to the next instruction."""
   global lbl_locs
@@ -78,19 +78,19 @@ otherwise it goes to the next instruction."""
   return "{a} {b} {c}\n".format(a=a, b=b, c=c)
 
 def add(a, b):
-  """Adds a and b and stores the result in a"""
+  """Adds a and b and stores the result in a."""
   return "{b} Z ?+1\nZ {a} ?+1\nZ Z ?+1\n".format(a=a, b=b)
 
 def sub(a, b):
-  """Subtracts b from a and stores the result in a"""
+  """Subtracts b from a and stores the result in a."""
   return "{b} {a} ?+1\n".format(a=a, b=b)
 
 def mov(a, b):
-  """Copies a to b."""
+  """Copies b to a."""
   return sub(a, a) + add(a, b)
 
 def out(a):
-  """Copies the value in a to the "output"(address 0xff)"""
+  """Copies the value in a to the "output"(address 0xff)."""
   return mov("255", a)
 
 def inp(a):

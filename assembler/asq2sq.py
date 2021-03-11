@@ -22,7 +22,7 @@ if len(t) != 2:
 try:
   stuff = json.loads(t[1])
 except:
-  error("Variables initalized incorrectly!")
+  error("Variables initialized incorrectly!")
 program = t[0].split("\n")
 
 #Memory Allocation
@@ -67,9 +67,6 @@ for i in range(len(program)):
 output += "0 0 0\n"
 
 #Putting in variables
-loc_data = {}
-for i in data_loc.keys():
-  loc_data[data_loc[i]] = i
 locations = list(loc_data.keys())
 locations.sort()
 for i in range(len(locations)):

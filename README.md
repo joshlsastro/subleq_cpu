@@ -114,7 +114,8 @@ Useful instructions that aren't foundational.
   Calculates a minus b and stores the result in a. (a = a - b)
 
 #### MOV a b
-  Copies value in b to a. (a = b)
+  Copies value in b to a. (a = b)  
+  Note: MOV a a sets a to 0.
 
 #### OUT a
   Copies value in a to "output" (address 0xff). Adds a to the Log chip's memory. (putchar(a))
@@ -140,7 +141,24 @@ Used for branching.
 #### BRZ a lbl
   Goes to lbl iff a=0. Otherwise, the computer continues as normal.
 
+### Table
+This table gives the number of subleq instructions each JLM instruction is translated to in memory. This may be useful for optimizing code.
 
+Instruction in JLM | Number of Subleq Instructions in Memory
+--- | ---
+HLT | 1
+LBL | 0
+SUBLEQ | 1
+ADD | 3
+SUB | 1
+MOV | 4
+OUT | 4
+INP | 5
+NOP | 1
+\#  | 0
+GOTO | 1
+BRP | 2
+BRZ | 7
 
 # Credits
 

@@ -6,7 +6,12 @@ LBL mult
     SUB b one
     GOTO mult
 LBL main
+    OUT ?
+    OUT space
     INP a
+    OUT a
+    # ten is newline
+    OUT ten
     SUB a ASCIIZ
     # b already is 0; optimization
     ADD b a
@@ -36,5 +41,12 @@ OUT ten
 SUB b b
 SUBLEQ result result main
 HLT
-{"a":0,"b":0,"result":0,"one":1,
-"ten":10,"_tens":0,"_ones":0}
+{
+"a":0,
+"b":0,
+"result":0,
+"one":1,
+"?":63,
+"space": 32,
+"ten":10,"_tens":0,"_ones":0
+}

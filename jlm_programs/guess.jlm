@@ -1,6 +1,9 @@
 # guessing game for a number in [0,9]
 # The secret number is in answer
 LBL start
+# Prompt
+OUT ?
+OUT space
 INP n
 OUT n
 OUT NEWLINE
@@ -18,6 +21,8 @@ OUT s2
 HLT
 {"n":0,
 "answer":9,
+"?": 63,
+"space": 32,
 "B":66,
 "A":65,
 "D":68,

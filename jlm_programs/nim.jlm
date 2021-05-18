@@ -1,0 +1,95 @@
+# This implements single-pile Nim. Each player can take 1, 2, or 3 objects each turn.
+# turn: 1 means computer goes first, 0 means human goes first
+# objects: number of starting objects
+#
+# First step: output current turn
+MOV output turn
+ADD output ASCIIZ
+OUT output
+OUT NEWLINE
+# Game loop here
+LBL gameloop
+  # Loop that prints objects remaining
+  MOV i objects
+  LBL printobjects
+    OUT o
+    SUB i ONE
+    BRP i printobjects
+  OUT NEWLINE
+  # If statement
+  # If turn<1: human's turn
+  SUBLEQ Z turn human_turn
+  LBL computer_turn
+    # Computer's turn
+    # Find objects mod 4
+    MOV mod4 objects
+    LBL findmod
+      SUB mod4 FOUR
+      BRP mod4 findmod
+      BRZ mod4 findmod
+    ADD mod4 FOUR
+    # If mod4>0, computer's winning
+    BRP mod4 winning
+    MOV to_remove ONE
+    GOTO next_turn
+    LBL winning
+    MOV to_remove mod4
+    GOTO next_turn
+  LBL human_turn
+    OUT ?
+    OUT space
+    INP to_remove
+    OUT to_remove
+    OUT NEWLINE
+    SUB to_remove ASCIIZ
+    # Check if to_remove<=0
+    SUBLEQ Z to_remove bad_human
+    # if to_remove>3, human tried to cheat
+    MOV tmp to_remove
+    SUB tmp THREE
+    BRP tmp bad_human
+      # If we're here, the checks passed
+      NOP
+      GOTO next_turn
+    LBL bad_human
+      # Print "no", set to_remove to 0 (bad move), and set turn to 1
+      # We change turns each round, so the human will go again afterwards
+      OUT n
+      OUT o
+      OUT NEWLINE
+      SUB to_remove to_remove
+      MOV turn ONE
+  #
+  LBL next_turn
+  SUB objects to_remove
+  # turn = 1-turn
+  SUB tmp tmp
+  SUB tmp turn
+  SUB tmp NEGONE
+  MOV turn tmp
+  # If there are objects left, keep going
+  BRP objects gameloop
+#
+# Output who won. 1 means human won, 0 means human loses
+# In other words, output the turn of the loser
+MOV output turn
+ADD output ASCIIZ
+OUT output
+HLT
+{
+"turn": 0,
+"objects": 14,
+"NEWLINE": 10,
+"space": 32,
+"?": 63,
+"n": 110,
+"o": 111,
+"ONE": 1,
+"THREE": 3,
+"FOUR": 4,
+"output": 0,
+"i": 0,
+"mod4": 0,
+"to_remove": 0,
+"tmp": 0
+}
